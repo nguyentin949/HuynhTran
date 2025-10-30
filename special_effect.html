@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Hiệu Ứng Đặc Biệt</title>
+    <link rel="stylesheet" href="special_effect.css">
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .action-button {
+            background: linear-gradient(45deg, #6c757d, #343a40);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body class="dark-background">
+    <audio src="Audio_MP3/special_effect.mp3" loop autoplay></audio>
+    <div class="pre-click-text">
+        <p>Bây giờ bạn hãy nhắm mắt lại và ước 1 điều mà bạn mong muốn!</p>
+    </div>
+    <div class="click-me-text" id="clickMeText">
+        <p>Click me!</p>
+    </div>
+    <div id="fire-cursor-effect"></div>
+    <div id="fire-spread-container"></div>
+    <div id="content-box-container">
+        <div class="content-box">
+            <h1 class="box-title">Gữi....!!!!!! Trân</h1>
+            <p class="box-text">
+                Chào mừng bạn đến với khoảnh khắc đặc biệt này. <br>
+                Chào mừng bạn đến với khoảnh khắc đặc biệt này. Hãy để những ngọn lửa lan tỏa ước mơ và hy vọng của bạn.
+
+                Nói cho tôi biết ước muốn của bạn được không!
+            </p>
+            <div class="button-container">
+                <a href="loichuc.html?msg=2" id="goBackButton" class="action-button">Quay lại</a>
+                <a href="thoinen.html" id="viewMoreButton" class="action-button">Xem tiếp</a>
+            </div>
+            <button id="closeBoxButton" class="box-button">Reset</button>
+        </div>
+    </div>
+    <div id="fireworks-container"></div>
+
+    <script src="special_effect.js"></script>
+</body>
+
+</html>

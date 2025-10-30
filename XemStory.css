@@ -1,0 +1,530 @@
+/* Custom Neon Colors */
+:root {
+    --color-purple-neon: #a855f7; /* Purple */
+    --color-blue-neon: #3b82f6; /* Blue */
+    --color-pink-neon: #ec4899; /* Pink */
+    --color-green-neon: #22c55e; /* Green */
+    --text-color-light: #f3f4f6; /* Light gray for text */
+    --text-color-dark: #1f2937; /* Dark gray for text */
+
+    /* RGB values for gradient support */
+    --color-purple-neon-rgb: 168, 85, 247;
+    --color-blue-neon-rgb: 59, 130, 246;
+}
+
+
+/* Base Styles */
+body {
+    margin: 0;
+    font-family: 'Dancing Script', cursive;
+    background-color: #0d0d0d;
+    color: var(--text-color-light);
+    overflow: hidden; /* Prevent scrollbars */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>') 12 12, auto;
+}
+
+/* Background Effects - Dưới video và trên nền đen */
+#particles-js {
+    z-index: 0; /* Đặt particles.js xuống dưới cùng */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Các hiệu ứng nền phụ khác */
+#shooting-star-container,
+#screen-sparkle-container,
+#meteor-shower-container, /* Hiệu ứng mới */
+#glow-flicker-container, /* Hiệu ứng mới */
+#light-orbs-container, /* Hiệu ứng mới */
+#planet-container {
+    z-index: 1; /* Nằm trên particles.js */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+
+/* Main Content - Nằm trên tất cả các hiệu ứng nền */
+.fullscreen-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 100; /* Luôn hiển thị trên cùng */
+    background: transparent;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.fullscreen-container.loaded {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.fullscreen-media {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.5s ease-out;
+}
+
+.fullscreen-media:hover {
+    transform: scale(1.02);
+}
+
+.fullscreen-text {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--text-color-light);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    white-space: pre-wrap;
+    animation: fadeIn 1s ease-in-out;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    z-index: 101;
+}
+
+/* Back Button */
+.back-button, .replay-button {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color-light);
+    border: 2px solid var(--text-color-light);
+    border-radius: 50px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 101;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.back-button {
+    top: 20px;
+    left: 20px;
+}
+
+.replay-button {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.back-button:hover, .replay-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Hiệu ứng gợn sóng khi click */
+#click-ripple-container {
+    z-index: 102; /* Nằm trên video và các nút */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.click-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    animation: ripple 1s forwards cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform: scale(0);
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Hiệu ứng Thả Tim */
+#love-hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 103; /* Nằm trên gợn sóng và video */
+}
+
+.love-heart {
+    position: absolute;
+    color: #ff69b4;
+    font-size: 2em;
+    animation: heart-fly-up 2s ease-out forwards;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes heart-fly-up {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    20% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(calc(-50% + var(--dest-x)), calc(-50% + var(--dest-y))) scale(0.2);
+        opacity: 0;
+    }
+}
+
+
+/* Hiệu ứng Sao Băng */
+#shooting-star-container {
+    z-index: 1; /* Nằm trên particles.js */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.shooting-star {
+    position: absolute;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+    width: 50px;
+    height: 3px;
+    border-radius: 50%;
+    opacity: 0;
+    animation: shoot 5s linear infinite;
+    box-shadow: 0 0 10px #fff;
+}
+
+@keyframes shoot {
+    0% {
+        transform: translateX(-100vw) translateY(50vh) rotate(-45deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    20% {
+        transform: translateX(100vw) translateY(-50vh) rotate(-45deg);
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Screen Sparkle Effect */
+#screen-sparkle-container {
+    z-index: 1; /* Nằm trên particles.js */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.screen-sparkle {
+    position: absolute;
+    border-radius: 50%;
+    background-color: white;
+    opacity: 0;
+    animation: sparkle-fade 3s forwards infinite;
+}
+
+@keyframes sparkle-fade {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+/* Hiệu ứng Tinh thể Ánh sáng tại con trỏ chuột */
+#crystal-effect-container {
+    z-index: 104; /* Đảm bảo nó nằm trên các hiệu ứng khác */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.crystal-sparkle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.7), 0 0 10px var(--color-sparkle, #fff);
+    transform: translate(-50%, -50%);
+    animation: crystal-fade-out 1.5s forwards ease-out;
+    --translate-x: 0px;
+    --translate-y: 0px;
+}
+
+@keyframes crystal-fade-out {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(calc(-50% + var(--translate-x) * 0.2), calc(-50% + var(--translate-y) * 0.2)) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--translate-x)), calc(-50% + var(--translate-y))) scale(0.5);
+        filter: blur(2px);
+    }
+}
+
+/* --- CÁC HIỆU ỨNG MỚI --- */
+
+/* 1. Hiệu ứng Vòng sáng Neon (Neon Pulse) */
+#neon-pulse-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 99; /* Nằm dưới video nhưng trên các hiệu ứng nền khác */
+}
+
+.neon-pulse-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%; /* Vừa vặn với video */
+    height: 95%; /* Vừa vặn với video */
+}
+
+.neon-pulse {
+    position: absolute;
+    border-radius: 10px; /* Bo góc như video */
+    border: 2px solid transparent;
+    animation: neonPulse 3s infinite ease-in-out;
+    box-shadow: 0 0 10px rgba(var(--color-purple-neon-rgb), 0.7), 0 0 20px rgba(var(--color-blue-neon-rgb), 0.5);
+    opacity: 0;
+}
+
+/* Các lớp pulse để tạo nhiều vòng sáng với độ trễ khác nhau */
+.neon-pulse:nth-child(1) { animation-delay: 0s; border-color: var(--color-purple-neon); }
+.neon-pulse:nth-child(2) { animation-delay: 1s; border-color: var(--color-blue-neon); }
+.neon-pulse:nth-child(3) { animation-delay: 2s; border-color: var(--color-pink-neon); }
+
+
+@keyframes neonPulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    30% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    70% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* 2. Hiệu ứng Bụi sao lấp lánh (Stardust Trail) - Theo con trỏ chuột */
+#stardust-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Rất quan trọng */
+    overflow: hidden;
+    z-index: 105; /* Nằm trên con trỏ chuột và các hiệu ứng khác */
+}
+
+.stardust-particle {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    animation: stardust-fade 1.5s forwards ease-out;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+
+@keyframes stardust-fade {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* 3. Hiệu ứng Mưa sao băng (Meteor Shower) */
+#meteor-shower-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 5; /* Nằm trên các hiệu ứng nền cơ bản */
+}
+
+.meteor {
+    position: absolute;
+    background: linear-gradient(to bottom right, #fff, rgba(255, 255, 255, 0));
+    width: 2px;
+    height: 30px;
+    opacity: 0;
+    border-radius: 50%;
+    animation: meteor-fall 2s linear forwards;
+    box-shadow: 0 0 5px #fff;
+}
+
+@keyframes meteor-fall {
+    0% {
+        transform: translate(0, -100px) rotate(45deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(300px, 600px) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* 4. Hiệu ứng Ánh sáng lung linh (Glow Flicker) */
+#glow-flicker-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1; /* Nằm trên particles.js */
+    mix-blend-mode: screen; /* Giúp hòa trộn với nền */
+}
+
+.glow-flicker-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    opacity: 0;
+    animation: subtle-glow-flicker 5s infinite alternate ease-in-out;
+}
+
+@keyframes subtle-glow-flicker {
+    0% { opacity: 0.1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 0.1; }
+}
+
+/* 5. Hiệu ứng Bong bóng ánh sáng (Light Orbs) */
+#light-orbs-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2; /* Nằm trên các hiệu ứng nền */
+}
+
+.light-orb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 70%);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(173, 216, 230, 0.6); /* Light blue glow */
+    animation: float-orb 15s infinite ease-in-out alternate;
+    opacity: 0;
+}
+
+@keyframes float-orb {
+    0% { transform: translate(var(--start-x), var(--start-y)) scale(0.5); opacity: 0; }
+    20% { opacity: 0.8; }
+    100% { transform: translate(var(--end-x), var(--end-y)) scale(1); opacity: 0; }
+}
+/* Hiệu ứng Hành tinh (mới) */
+#planet-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 3;
+}
+.planet-orb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, #8A2BE2, #4B0082);
+    box-shadow: 0 0 20px 5px rgba(138, 43, 226, 0.7);
+    animation: float-planet 25s infinite ease-in-out alternate;
+    opacity: 0.5;
+}
+
+@keyframes float-planet {
+    0% { transform: translate(var(--start-x), var(--start-y)) scale(0.8); }
+    100% { transform: translate(var(--end-x), var(--end-y)) scale(1.2); }
+}

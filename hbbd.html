@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Chúc Mừng Sinh Nhật Rực Rỡ! ✨</title>
+
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;500;600;700&display=swap" as="style">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="hbbd.css">
+    
+    <!-- Meta tags for better SEO -->
+    <meta name="description" content="Celebrate a special birthday with this beautiful interactive webpage">
+    <meta name="theme-color" content="#667eea">
+</head>
+<body>
+    <!-- Audio element -->
+            <audio id="game-audio" src="Audio_MP3/hbbd.mp3" autoplay loop></audio>
+    <!-- Loading screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>Preparing something special...</h2>
+        </div>
+    </div>
+
+    <!-- Particle background -->
+    <div id="particles-js"></div>
+
+    <!-- Floating elements containers -->
+    <div id="confetti-container"></div>
+    <div id="floating-hearts"></div>
+    <div id="cursor-sparkles"></div>
+
+    <!-- Geometric background shapes -->
+    <div class="background-shapes">
+        <div class="shape circle gradient-1 anim-1"></div>
+        <div class="shape square gradient-2 anim-2"></div>
+        <div class="shape triangle gradient-3 anim-3"></div>
+        <div class="shape circle gradient-4 anim-4"></div>
+        <div class="shape hexagon gradient-5 anim-5"></div>
+        <div class="shape circle gradient-6 anim-6"></div>
+    </div>
+
+    <!-- Main content wrapper -->
+    <div class="wrapper">
+        <div class="card glassmorphism-card" id="mainCard">
+            
+            <!-- Header section -->
+            <header class="card-header">
+                <h1 class="birthday-heading" id="mainTitle">Happy Birthday!</h1>
+                <div class="celebration-line"></div>
+                <p class="celebrate-text">
+                    Celebrate this special day 
+                    <span class="emoji-container">
+                        <span class="emoji pulse">🥳</span>
+                        <span class="emoji-sparkle">✨</span>
+                    </span>
+                </p>
+            </header>
+
+            <!-- Profile section -->
+            <section class="profile-section">
+                <div class="profile-image-container" id="profileContainer">
+                    <div class="image-frame">
+                        <img src="img/nen.jpg" alt="Profile picture" class="profile-image" loading="lazy">
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="profile-glow"></div>
+                </div>
+            </section>
+
+            <!-- Decorative icons -->
+            <div class="decorative-icons-grid">
+                <div class="icon-item top-left" data-icon="gift">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <div class="icon-item top-right" data-icon="cake">
+                    <i class="fas fa-cake-candles"></i>
+                </div>
+                <div class="icon-item bottom-left" data-icon="balloon">
+                    <i class="fas fa-balloon"></i>
+                </div>
+                <div class="icon-item bottom-right" data-icon="star">
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+
+            <!-- Message section -->
+            <section class="message-section">
+                <div class="message-container">
+                    <p class="birthday-message" id="birthdayMessage"></p>
+                    <div class="message-decoration"></div>
+                </div>
+            </section>
+
+            <!-- Controls section -->
+            <section class="controls-section">
+                <div class="controls-grid">
+                    <a href="game.html" class="action-button game-button" aria-label="Play games">
+                        <div class="button-content">
+                            <i class="fas fa-gamepad"></i>
+                            <span>GAME</span>
+                        </div>
+                        <div class="button-ripple"></div>
+                    </a>
+                </div>
+                
+                <!-- Volume control -->
+                <div class="volume-control" id="volumeControl">
+                    <i class="fas fa-volume-up volume-icon"></i>
+                    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.1" value="0.7">
+                </div>
+            </section>
+
+            
+
+            <!-- Footer -->
+            <footer class="card-footer">
+                <div class="signature-container">
+                    <div class="signature-text">With love and best wishes</div>
+                    <div class="signature-line"></div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Toast notifications -->
+    <div id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="hbbd.js"></script>
+</body>
+</html>

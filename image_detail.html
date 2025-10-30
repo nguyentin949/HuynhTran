@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Lời Chúc Sinh Nhật Đặc Biệt! 🎉</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV69w+lA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="hbbd.css">
+    
+    <style>
+        /* CSS riêng cho trang chi tiết, có thể ghi đè hbbd.css */
+        body {
+            display: flex;
+            flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-middle), var(--bg-gradient-end), var(--bg-gradient-middle));
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            color: var(--text-color-dark);
+        }
+
+        .detail-card {
+            background: rgba(255, 255, 255, 0.7); /* Nền sáng hơn một chút */
+            backdrop-filter: blur(35px); /* Mờ hơn nữa */
+            -webkit-backdrop-filter: blur(35px);
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            border-radius: 25px; /* Bo tròn hơn một chút */
+            padding: 40px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            max-width: 850px; /* Thẻ rộng hơn để chứa ảnh lớn và lời chúc */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .detail-image-container {
+            max-width: 600px; /* SỬA: Ảnh lớn hơn nhiều trên trang chi tiết */
+            width: 90%; /* SỬA: Chiếm phần lớn chiều rộng thẻ */
+            padding-bottom: 60%; /* TỶ LỆ HÌNH ẢNH 4:3 (ví dụ) cho ảnh ngang */
+            height: 0; 
+            overflow: hidden;
+            border-radius: 10px; /* Bo tròn nhẹ góc ảnh trên trang chi tiết */
+            border: 8px solid var(--color-pink-neon); /* Viền màu neon nổi bật */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .detail-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 0; /* Giữ nguyên không bo tròn */
+        }
+        /* Nếu ảnh tran.jpg của bạn là ảnh dọc, bạn có thể điều chỉnh padding-bottom cho tỷ lệ khác, ví dụ 120% cho tỷ lệ 5:4 dọc */
+        /* .detail-image-container { padding-bottom: 120%; } */
+
+
+        .detail-message {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            line-height: 1.8;
+            color: var(--text-color-dark);
+            margin-bottom: 30px;
+            text-align: justify; /* Căn đều hai bên cho lời chúc */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .detail-signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5em;
+            color: var(--signature-color);
+            font-weight: 700;
+            margin-top: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(45deg, var(--color-blue-neon), var(--color-purple-neon));
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0, 119, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 119, 255, 0.6);
+        }
+
+        /* Responsive cho trang chi tiết */
+        @media (max-width: 768px) {
+            .detail-card {
+                padding: 30px;
+                border-radius: 20px;
+                max-width: 90%;
+            }
+            .detail-image-container {
+                max-width: 100%; /* Cho phép ảnh chiếm toàn bộ chiều rộng thẻ trên mobile */
+                padding-bottom: 75%; /* Tỷ lệ 4:3 có thể phù hợp hơn cho ảnh điện thoại ngang */
+            }
+            .detail-message {
+                font-size: 1.2em;
+            }
+            .detail-signature {
+                font-size: 2em;
+            }
+        }
+        @media (max-width: 480px) {
+            .detail-card {
+                padding: 20px;
+                border-radius: 15px;
+            }
+            .detail-image-container {
+                padding-bottom: 85%; /* Tăng tỷ lệ nếu ảnh vẫn trông hơi nhỏ trên mobile */
+            }
+            .detail-message {
+                font-size: 1em;
+            }
+            .detail-signature {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div id="confetti-container"></div>
+    <div id="falling-elements-container"></div>
+    <div id="cursor-sparkles"></div>
+
+    <div class="detail-card">
+        <div class="detail-image-container">
+            <img src="img/nen.jpg" alt="Ảnh kỷ niệm" class="detail-image">
+        </div>
+        <p class="detail-message" id="fullBirthdayMessage">
+            Chúc mừng sinh nhật bạn của tôi! <br>
+            Cầu mong mọi ước mơ, hy vọng và khát khao của bạn trong tuổi mới đều trở thành hiện thực. Hãy luôn giữ vững nụ cười rạng rỡ và trái tim ấm áp này nhé. Bạn là một người thật đặc biệt, và tôi luôn trân trọng những khoảnh khắc chúng ta đã chia sẻ. <br>
+            Chúc bạn một ngày sinh nhật thật đáng nhớ và tràn ngập niềm vui bên những người yêu thương!
+        </p>
+        <a href="hbbd.html" class="back-button">Quay lại Trang Sinh Nhật</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="hbbd.js"></script>
+</body>
+</html>

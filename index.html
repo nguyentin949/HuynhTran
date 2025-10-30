@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 Món Quà Bất Ngờ! 🎁</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="index.css"> 
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="confetti-container"></div>
+    <div class="snowflake-container"></div>
+    <div class="bubble-container"></div>
+    <div class="star-container"></div>
+    <div class="floating-hearts-container"></div>
+    
+    <!-- Background Decorative Elements -->
+    <div class="bg-decoration">
+        <div class="floating-circle circle-1"></div>
+        <div class="floating-circle circle-2"></div>
+        <div class="floating-circle circle-3"></div>
+        <div class="floating-circle circle-4"></div>
+        <div class="floating-circle circle-5"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="content-wrapper">
+            <h1 class="main-title">Chào mừng bạn đến!</h1>
+            <p class="message-intro">
+                <span class="intro-icon">✨</span>
+                Có một món quà đặc biệt đang chờ bạn khám phá...
+                <span class="intro-icon">✨</span>
+            </p>
+            
+            <div class="gift-wrapper">
+                <a href="#" id="giftLink" class="gift-container">
+                    <div class="gift-glow"></div>
+                    <img src="img/gift_icon.png" alt="Gói quà" class="gift-image"> 
+                    <span class="click-text">Click Me!</span>
+                    <div class="gift-sparkles">
+                        <span class="sparkle sparkle-1">✨</span>
+                        <span class="sparkle sparkle-2">⭐</span>
+                        <span class="sparkle sparkle-3">💫</span>
+                        <span class="sparkle sparkle-4">✨</span>
+                    </div>
+                </a>
+            </div>
+            
+            <p class="hint-text">
+                <span class="hint-icon">👆</span>
+                Nhấn vào món quà để bắt đầu!
+            </p>
+        </div>
+    </div>
+
+    <!-- Enhanced Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <span class="title-icon">🎁</span>
+                    Xác nhận thông tin
+                    <span class="title-icon">🎁</span>
+                </h2>
+                <span class="close-button">&times;</span>
+            </div>
+            
+            <div class="modal-body">
+                <p class="modal-description">Vui lòng nhập thông tin để mở quà:</p>
+                
+                <div class="input-group">
+                    <div class="input-wrapper">
+                        <input type="text" id="fullName" placeholder="Nhập họ và tên của bạn" required>
+                        <label for="fullName" class="input-label">
+                            <span class="label-icon">👤</span>
+                            Họ và tên
+                        </label>
+                    </div>
+                    
+                    <div class="input-wrapper">
+                        <input type="text" id="dob" placeholder="DD/MM/YYYY" required maxlength="10">
+                        <label for="dob" class="input-label">
+                            <span class="label-icon">🎂</span>
+                            Ngày sinh
+                        </label>
+                    </div>
+                </div>
+                
+                <p id="errorMessage" class="error-message">
+                    <span class="error-icon">❌</span>
+                    Thông tin không đúng. Vui lòng thử lại!
+                </p>
+                
+                <button id="submitInfo" class="submit-button">
+                    <span class="button-icon">🎁</span>
+                    <span class="button-text">Mở Quà</span>
+                    <div class="button-ripple"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Đang mở quà...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

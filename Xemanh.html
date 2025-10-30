@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xem Ảnh & Story</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="xemanh.css">
+</head>
+<body>
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="Audio_MP3/Xemanh.mp3" type="audio/mpeg">
+        Trình duyệt của bạn không hỗ trợ audio.
+    </audio>
+
+    <div id="particles-js"></div> 
+    <div id="confetti-container"></div>
+    <div id="cursor-sparkles"></div>
+    <div class="galaxy-spiral"></div>
+    <div class="rainbow-smoke"></div>
+    <div class="nebula-container">
+        <div class="nebula nebula-1"></div>
+        <div class="nebula nebula-2"></div>
+        <div class="nebula nebula-3"></div>
+    </div>
+    
+    
+<div id="click-ripple-container"></div>
+    <div id="shooting-star-container"></div>
+    <div id="screen-sparkle-container"></div>
+
+    <div class="fullscreen-container">
+        <h1 id="fullscreen-text" class="fullscreen-text"></h1>
+        <img id="fullscreen-image" class="fullscreen-media" src="" alt="Ảnh đang xem">
+        <video id="fullscreen-video" class="fullscreen-media" src="" autoplay loop muted playsinline></video>
+        <button id="backToGalleryBtn" class="back-button">
+            <i class="fa-solid fa-arrow-left"></i> Quay lại kho ảnh
+        </button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="xemanh.js"></script>
+</body>
+</html>

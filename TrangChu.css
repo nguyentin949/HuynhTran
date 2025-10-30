@@ -1,0 +1,196 @@
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6a0dad, #4b0082, #a855f7, #1e90ff);
+    background-size: 400% 400%;
+    animation: gradientShift 20s ease infinite;
+    color: #f0f0f0;
+    text-align: center;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 30px;
+    position: relative; /* Thêm để hiệu ứng sao hoạt động */
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Hiệu ứng sao lấp lánh */
+.star-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0;
+    animation: twinkle 5s infinite;
+}
+
+.star:nth-child(2n) {
+    width: 2px;
+    height: 2px;
+    animation-delay: 1s;
+    background: #ffcc00;
+}
+
+.star:nth-child(3n) {
+    width: 1.5px;
+    height: 1.5px;
+    animation-delay: 2.5s;
+    background: #a855f7;
+}
+
+@keyframes twinkle {
+    0%, 100% { transform: scale(0.5); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+/* Hiệu ứng sao băng */
+.shooting-star-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.shooting-star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: linear-gradient(-45deg, #fff, transparent);
+    border-radius: 50%;
+    animation: shootingStar 10s infinite ease-in-out;
+}
+
+@keyframes shootingStar {
+    0% {
+        transform: rotate(225deg) translateX(0);
+        opacity: 1;
+        top: -100px;
+        left: 50%;
+    }
+    100% {
+        transform: rotate(225deg) translateX(-400px);
+        opacity: 0;
+        top: 200px;
+        left: -100px;
+    }
+}
+
+.gift-container {
+    position: relative;
+    cursor: pointer; 
+    perspective: 1000px;
+    transition: transform 0.3s ease-out;
+    text-decoration: none; 
+    display: block; 
+}
+
+.gift-container:hover {
+    transform: scale(1.05) rotateX(5deg) rotateY(5deg);
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.gift-container:active .gift-image {
+    transform: scale(0.95);
+}
+
+.gift-image {
+    width: 250px;
+    height: 250px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(255, 204, 0, 0.8));
+    transition: transform 0.3s ease-out;
+}
+
+.gift-container:hover .gift-image {
+    filter: drop-shadow(0 0 20px rgba(255, 204, 0, 1)) brightness(1.2);
+}
+
+.click-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateY(0deg);
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5em;
+    color: #ffcc00;
+    text-shadow: 0 0 8px rgba(255, 0, 119, 0.7),
+                 0 0 15px rgba(255, 204, 0, 0.5);
+    font-weight: 700;
+    pointer-events: none; 
+    animation: textGlow 2s infinite alternate;
+    white-space: nowrap;
+}
+
+.gift-container:hover .click-text {
+    animation: textSpinGlow 1.5s infinite alternate;
+    transform: translate(-50%, -50%) rotateY(10deg);
+    color: #fff;
+    text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff0077;
+}
+
+@keyframes textGlow {
+    0% { text-shadow: 0 0 8px rgba(255, 0, 119, 0.7), 0 0 15px rgba(255, 204, 0, 0.5); }
+    100% { text-shadow: 0 0 12px rgba(255, 0, 119, 1), 0 0 25px rgba(255, 204, 0, 0.8), 0 0 35px rgba(255, 255, 255, 0.4); }
+}
+
+@keyframes textSpinGlow {
+    0% { transform: translate(-50%, -50%) rotateY(0deg); text-shadow: 0 0 10px #ffcc00, 0 0 20px #ff0077; }
+    100% { transform: translate(-50%, -50%) rotateY(2deg); text-shadow: 0 0 15px #ffcc00, 0 0 30px #ff0077, 0 0 45px #fff; }
+}
+
+.message-intro {
+    font-size: 1.5em;
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .gift-image {
+        width: 200px;
+        height: 200px;
+    }
+    .click-text {
+        font-size: 3em;
+    }
+    .message-intro {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .gift-image {
+        width: 180px;
+        height: 180px;
+    }
+    .click-text {
+        font-size: 2.5em;
+    }
+    .message-intro {
+        font-size: 1em;
+    }
+}

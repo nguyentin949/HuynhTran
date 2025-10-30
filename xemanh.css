@@ -1,0 +1,480 @@
+/* Custom Neon Colors */
+:root {
+    --color-purple-neon: #a855f7; /* Purple */
+    --color-blue-neon: #3b82f6; /* Blue */
+    --color-pink-neon: #ec4899; /* Pink */
+    --color-green-neon: #22c55e; /* Green */
+    --text-color-light: #f3f4f6; /* Light gray for text */
+    --text-color-dark: #1f2937; /* Dark gray for text */
+
+    /* RGB values for gradient support */
+    --color-purple-neon-rgb: 168, 85, 247;
+    --color-blue-neon-rgb: 59, 130, 246;
+}
+
+
+/* Base Styles */
+body {
+    margin: 0;
+    font-family: 'Dancing Script', cursive;
+    background-color: #0d0d0d;
+    color: var(--text-color-light);
+    overflow: hidden; /* Prevent scrollbars */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>') 12 12, auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    user-select: none; /* Prevent text selection */
+}
+
+/* Particles.js Container */
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+/* Fullscreen Container */
+.fullscreen-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    max-width: 500px; /* Maximum width of the container, adjust as needed */
+    width: auto; /* Allow width to be determined by content, up to max-width */
+    min-width: 300px; /* Minimum width to prevent it from becoming too small */
+    
+    height: 90vh; /* Keep height for vertical centering */
+    background: rgba(17, 24, 39, 0.8); /* Slightly transparent dark background */
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    padding: 20px; /* Add padding around the content */
+    box-sizing: border-box; /* Include padding in width/height */
+}
+
+.fullscreen-container.loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Fullscreen Media (Image/Video) */
+.fullscreen-media {
+    max-width: 100%; 
+    max-height: calc(100% - 120px); 
+    height: auto;
+    object-fit: contain; 
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+    display: none; 
+    margin-bottom: 20px; 
+    cursor: pointer; /* Add pointer cursor for click effect */
+}
+
+/* Text Overlay */
+.fullscreen-text {
+    font-size: 3em;
+    font-weight: bold;
+    color: var(--color-pink-neon);
+    text-shadow: 0 0 10px var(--color-pink-neon), 0 0 20px var(--color-pink-neon);
+    margin-bottom: 20px; 
+    text-align: center;
+    padding: 0 10px;
+    max-width: 100%; 
+    word-wrap: break-word; 
+}
+
+/* Back Button */
+.back-button {
+    background: linear-gradient(45deg, var(--color-blue-neon), var(--color-purple-neon));
+    color: var(--text-color-light);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.back-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(45deg, var(--color-purple-neon), var(--color-blue-neon));
+}
+
+.back-button i {
+    font-size: 1.2em;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .fullscreen-container {
+        max-width: 90vw; 
+        min-width: unset; 
+        padding: 15px;
+    }
+
+    .fullscreen-text {
+        font-size: 2.5em;
+        margin-bottom: 15px;
+    }
+
+    .fullscreen-media {
+        max-height: calc(100% - 100px); 
+        margin-bottom: 15px;
+    }
+
+    .back-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .fullscreen-container {
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    .fullscreen-text {
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+
+    .fullscreen-media {
+        max-height: calc(100% - 80px); 
+        margin-bottom: 10px;
+    }
+
+    .back-button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}
+
+/* --- Confetti & Sparkles --- */
+#confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 5;
+}
+
+.confetti {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    background-color: var(--color);
+    animation: fall var(--duration) linear forwards;
+    animation-delay: var(--delay);
+    opacity: 0;
+}
+
+@keyframes fall {
+    0% {
+        transform: translate(0, -10vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(var(--translateX), 100vh) rotate(var(--rotate));
+        opacity: 0;
+    }
+}
+
+#cursor-sparkles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.cursor-sparkle {
+    position: absolute;
+    background-color: var(--color);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+    animation: sparkle-fade-out var(--duration) forwards;
+}
+
+@keyframes sparkle-fade-out {
+    0% {
+        opacity: 1;
+        transform: scale(0);
+    }
+    20% {
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+/* --- Background Effects --- */
+
+/* Galaxy Spiral */
+.galaxy-spiral {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200vmin; 
+    height: 200vmin;
+    background: radial-gradient(circle at center,
+        rgba(var(--color-purple-neon-rgb), 0.1) 0%,
+        rgba(var(--color-blue-neon-rgb), 0.1) 20%,
+        rgba(0,0,0,0) 70%
+    );
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: spin 60s linear infinite;
+    z-index: -1;
+    opacity: 0.7;
+    pointer-events: none;
+}
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Rainbow Smoke */
+.rainbow-smoke {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150vmin;
+    height: 150vmin;
+    background: radial-gradient(circle at center,
+        rgba(255,0,0,0.1) 0%,
+        rgba(255,165,0,0.1) 10%,
+        rgba(255,255,0,0.1) 20%,
+        rgba(0,128,0,0.1) 30%,
+        rgba(0,0,255,0.1) 40%,
+        rgba(75,0,130,0.1) 50%,
+        rgba(238,130,238,0.1) 60%,
+        rgba(0,0,0,0) 70%
+    );
+    border-radius: 50%;
+    filter: blur(80px); 
+    transform: translate(-50%, -50%) scale(1);
+    animation: pulseSmoke 25s infinite alternate ease-in-out;
+    z-index: -2;
+    opacity: 0.6;
+    pointer-events: none;
+}
+@keyframes pulseSmoke {
+    0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.5; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; }
+    100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.5; }
+}
+
+/* Nebula Background */
+.nebula-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -3;
+    pointer-events: none;
+}
+
+.nebula {
+    position: absolute;
+    background: radial-gradient(circle,
+        rgba(var(--color-blue-neon-rgb), 0.2) 0%,
+        rgba(var(--color-purple-neon-rgb), 0.1) 50%,
+        rgba(0,0,0,0) 70%
+    );
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.6;
+    animation: floatNebula 30s infinite ease-in-out alternate;
+}
+
+.nebula-1 {
+    width: 100vmin; height: 100vmin;
+    top: -20%; left: -30%;
+    animation-delay: 0s;
+}
+.nebula-2 {
+    width: 120vmin; height: 120vmin;
+    top: 60%; left: 70%;
+    animation-delay: 10s;
+}
+.nebula-3 {
+    width: 80vmin; height: 80vmin;
+    top: 30%; left: 20%;
+    animation-delay: 5s;
+}
+
+@keyframes floatNebula {
+    0% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+    50% { transform: translate(10vw, 5vh) scale(1.1); opacity: 0.7; }
+    100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+}
+
+/* --- New Effects Styles --- */
+
+/* Heart Reaction on Image/Video Click */
+.heart-reaction {
+    position: absolute;
+    font-size: 2.5em; /* Kích thước tim */
+    color: var(--color-pink-neon); /* Màu hồng neon */
+    animation: popAndFade 0.8s ease-out forwards;
+    pointer-events: none; /* Không chặn click */
+    transform: translate(-50%, -50%); /* Căn giữa tim vào điểm click */
+    text-shadow: 0 0 5px var(--color-pink-neon), 0 0 10px var(--color-pink-neon);
+}
+
+@keyframes popAndFade {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    30% {
+        opacity: 1;
+        transform: translate(-50%, -80%) scale(1.2); /* Bay lên và to ra */
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -150%) scale(0.8); /* Bay cao hơn và nhỏ lại, mờ dần */
+    }
+}
+
+/* Ripple Effect on Background Click */
+#click-ripple-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Rất quan trọng để click xuyên qua */
+    overflow: hidden;
+    z-index: 50; /* Cao hơn nền nhưng thấp hơn container chính */
+}
+
+.click-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(var(--color-blue-neon-rgb), 0.5); /* Màu xanh neon */
+    animation: ripple 1s ease-out forwards;
+    transform: scale(0);
+    opacity: 1;
+    filter: blur(5px);
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(3); /* Lan tỏa lớn hơn */
+        opacity: 0;
+    }
+}
+
+/* Shooting Star Effect */
+#shooting-star-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1; /* Nằm trên particles.js nhưng dưới các hiệu ứng khác */
+}
+
+.shooting-star {
+    position: absolute;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
+    width: 50px; /* Chiều dài sao băng */
+    height: 3px;
+    border-radius: 50%;
+    opacity: 0;
+    animation: shoot 5s linear infinite;
+}
+
+@keyframes shoot {
+    0% {
+        transform: translateX(-100vw) translateY(50vh) rotate(-45deg);
+        opacity: 0;
+    }
+    5% {
+        opacity: 1; /* Hiện ra nhanh */
+    }
+    20% {
+        transform: translateX(100vw) translateY(-50vh) rotate(-45deg);
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Screen Sparkle Effect (Gentle, overall sparkle) */
+#screen-sparkle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2; /* Nằm trên sao băng */
+}
+
+.screen-sparkle {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: screenSparkle 3s infinite ease-out;
+}
+
+@keyframes screenSparkle {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    20% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}

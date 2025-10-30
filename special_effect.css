@@ -1,0 +1,385 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    cursor: none;
+    background-color: #36454F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    color: #f0f0f0;
+}
+
+#fire-cursor-effect {
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    background: linear-gradient(to top, #ff4500, #ff6600 50%, #ffcc00 80%, #ffff33);
+    border-radius: 10px 10px 20px 20px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10001;
+    box-shadow:
+        0 0 5px rgba(255, 69, 0, 0.8),
+        0 0 15px rgba(255, 102, 0, 0.6),
+        0 0 30px rgba(255, 153, 0, 0.4);
+    animation: fireCursorPulse 0.8s infinite alternate;
+    opacity: 1;
+}
+
+@keyframes fireCursorPulse {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    100% { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+#fire-cursor-effect::before,
+#fire-cursor-effect::after {
+    content: '';
+    position: absolute;
+    background: radial-gradient(circle at center, #ff9900, #ffcc00 50%, transparent 80%);
+    border-radius: 50%;
+    box-shadow: 0 0 5px #ffcc00;
+    opacity: 0.8;
+}
+
+#fire-cursor-effect::before {
+    top: -8px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    animation: flameDrift 1.2s infinite ease-in-out alternate;
+}
+
+#fire-cursor-effect::after {
+    top: -12px;
+    right: 5px;
+    width: 8px;
+    height: 8px;
+    animation: flameDrift 1s infinite ease-in-out alternate reverse;
+}
+
+@keyframes flameDrift {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(2px, -5px) scale(1.1); opacity: 0.9; }
+    100% { transform: translate(0, 0) scale(1); }
+}
+
+#fire-spread-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.fire-particle {
+    position: absolute;
+    background: radial-gradient(circle at center, #FF4500 0%, #FF6347 20%, #FF8C00 40%, #FFD700 60%, #FFFFE0 80%, transparent 100%);
+    border-radius: 50%;
+    opacity: 0;
+    box-shadow: 0 0 8px rgba(255, 69, 0, 0.7), 0 0 15px rgba(255, 140, 0, 0.5), 0 0 25px rgba(255, 215, 0, 0.3);
+    animation: fireSpread var(--spread-duration) ease-out forwards, flicker 0.3s infinite alternate;
+    transform: scale(0);
+    mix-blend-mode: screen;
+    filter: blur(0.5px);
+}
+
+@keyframes flicker {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+
+@keyframes fireSpread {
+    0% { transform: translate(var(--offsetX, 0), var(--offsetY, 0)) scale(0); opacity: 0.8; }
+    20% { opacity: 1; }
+    70% { transform: translate(var(--offsetX, 0), var(--offsetY, 0)) scale(1.5); opacity: 0.5; }
+    100% { transform: translate(var(--offsetX, 0), var(--offsetY, 0)) scale(2); opacity: 0; }
+}
+
+#content-box-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+#content-box-container.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.content-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 15px;
+    padding: 40px;
+    max-width: 700px;
+    width: 90%;
+    box-shadow: 0 0 30px rgba(255, 69, 0, 0.8), 0 0 60px rgba(255, 215, 0, 0.6);
+    text-align: center;
+    color: #f0f0f0;
+}
+
+.box-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4.5em; /* Đã tăng kích thước phông chữ */
+    margin-bottom: 20px;
+    color: #FFD700;
+    text-shadow: 0 0 10px #FF4500, 0 0 20px #FFD700;
+}
+
+.box-text {
+    font-size: 1.6em; /* Đã tăng kích thước phông chữ */
+    line-height: 1.6;
+    margin-bottom: 30px;
+    white-space: pre-wrap;
+}
+
+.box-button {
+    background: linear-gradient(45deg, #FF4500, #FFD700);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 30px;
+    font-size: 1.1em;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.box-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(255, 69, 0, 0.7);
+}
+
+@media (max-width: 768px) {
+    .content-box {
+        padding: 25px;
+        max-width: 95%;
+    }
+    .box-title {
+        font-size: 3.5em;
+    }
+    .box-text {
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-box {
+        padding: 20px;
+    }
+    .box-title {
+        font-size: 2.8em;
+    }
+    .box-text {
+        font-size: 1.2em;
+    }
+    .box-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}
+
+/* Hiệu ứng đốm lửa bay lên */
+.ember-particle {
+    position: absolute;
+    bottom: 0;
+    background: radial-gradient(circle at center, #FFCC00 0%, #FF6600 50%, transparent 100%);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0.1);
+    animation: emberRise var(--ember-duration) ease-out forwards;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.9), 0 0 20px rgba(255, 102, 0, 0.7);
+    pointer-events: none;
+    z-index: 9997;
+}
+
+@keyframes emberRise {
+    0% {
+        transform: translate(var(--initial-x, 0), 0) scale(0.1);
+        opacity: 0;
+    }
+    5% { 
+        opacity: 0.9; 
+    }
+    80% { 
+        opacity: 0.5;
+    }
+    100% {
+        transform: translate(var(--final-x, 0), var(--final-y, -100px)) scale(0.8);
+        opacity: 0;
+    }
+}
+/* Định dạng cho văn bản trước khi nhấp chuột */
+.pre-click-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 3.5em; /* Đã tăng kích thước phông chữ */
+    font-family: 'Dancing Script', cursive;
+    color: #ffd700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 165, 0, 0.6);
+    z-index: 10000;
+    animation: fadeInOut 5s infinite alternate;
+    pointer-events: none;
+}
+
+/* Hiệu ứng nhấp nháy mờ dần */
+@keyframes fadeInOut {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Định dạng cho dòng chữ "Click me!" */
+.click-me-text {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 4em; /* Đã tăng kích thước phông chữ */
+    font-family: 'Dancing Script', cursive;
+    color: #ffcc00;
+    text-shadow: 0 0 10px #ff4500, 0 0 20px #ffcc00;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 10002;
+    pointer-events: none;
+    text-align: center;
+}
+
+/* Class để hiển thị và tạo hiệu ứng nhấp nháy */
+.click-me-text.visible {
+    opacity: 1;
+    animation: pulseGlow 1.5s infinite;
+}
+/* --- HIỆU ỨNG PHÁO HOA MỚI --- */
+#fireworks-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 15;
+}
+
+.firework {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    opacity: 0;
+    animation: firework-rise 1.2s ease-out forwards, firework-burst 0.6s 1.2s ease-out forwards;
+    background-color: var(--primary-glow);
+    box-shadow: 0 0 8px var(--primary-glow);
+}
+
+.firework-particle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--secondary-glow);
+    box-shadow: 0 0 5px var(--secondary-glow);
+    transform: translate(-50%, -50%) scale(0);
+    animation: explode-particle 1s forwards cubic-bezier(0.1, 0.7, 1, 0.1);
+}
+
+@keyframes firework-rise {
+    0% { transform: translateY(0); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+@keyframes firework-burst {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes explode-particle {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(calc(var(--tx) + -50%), calc(var(--ty) + -50%)) scale(1.5);
+        opacity: 0;
+    }
+}
+/* Hiệu ứng nhấp nháy cho "Click me!" */
+@keyframes pulseGlow {
+    0% { transform: translateX(-50%) scale(1); text-shadow: 0 0 10px #ff4500, 0 0 20px #ffcc00; }
+    50% { transform: translateX(-50%) scale(1.1); text-shadow: 0 0 20px #ff4500, 0 0 40px #ffcc00; }
+    100% { transform: translateX(-50%) scale(1); text-shadow: 0 0 10px #ff4500, 0 0 20px #ffcc00; }
+}
+
+@media (max-width: 768px) {
+    .click-me-text {
+        font-size: 2em;
+        bottom: 5%;
+    }
+    /* --- HIỆU ỨNG MƯA SAO BĂNG --- */
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    transform-origin: bottom center;
+    pointer-events: none;
+    animation: shootingStar 5s linear infinite;
+    z-index: 10;
+}
+
+@keyframes shootingStar {
+    0% {
+        transform: rotate(-45deg) translateY(-100vh);
+        opacity: 0;
+    }
+    1% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(-45deg) translateY(200vh);
+        opacity: 0;
+    }
+}
+/* --- HIỆU ỨNG NHẤP NHÁY CHO TIÊU ĐỀ HỘP THOẠI --- */
+.box-title::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: rgba(255, 255, 255, 0.1);
+    filter: blur(5px);
+    border-radius: 15px;
+    animation: glowPulse 2s infinite ease-in-out;
+    z-index: -1;
+}
+
+@keyframes glowPulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 0.5; }
+}
+}

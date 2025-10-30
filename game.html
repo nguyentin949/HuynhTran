@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Bấm Bong Bóng</title>
+    <link rel="stylesheet" href="Game.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="game-container">
+</div>
+
+<div id="rules-screen">
+    <h2>Luật chơi</h2>
+    <p>🎈 Bong bóng có chữ **Trân**: +1 điểm</p>
+    <p>🎈 Bong bóng **không** có chữ **Trân**: -1 điểm</p>
+    <button id="start-button">Bắt đầu</button>
+</div>
+
+<div id="score-display">Bong bóng đã nổ: <span id="score">0</span> / 10</div>
+
+<div id="reward-screen">
+    <div class="reward-content">
+        <h2>Chúc Mừng Sinh Nhật! 🎉</h2>
+        <p class="reward-message-top">Bạn đã hoàn thành trò chơi.</p>
+        <p class="reward-message-bottom">Đây là món quà bí mật dành cho bạn!</p>
+    </div>
+</div>
+
+<audio id="game-audio" src="Audio_MP3/GAME.mp3" autoplay loop></audio>
+
+<script src="Game.js"></script>
+
+</body>
+</html>

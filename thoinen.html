@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bánh Sinh Nhật Lớn</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="thoinen.css">
+</head>
+<body class="dark-background">
+    <div class="controls">
+    <button id="flame-tool" class="tool-button">🔥</button>
+    <button id="blower-tool" class="tool-button active">💨</button>
+    <button id="fireworks-tool" class="tool-button" onclick="playFireworksAndTrigger()">🎆</button>
+    <button id="back-button" class="tool-button">⬅️</button>
+    <a href="hinhanh.html" class="tool-button">🖼️</a>
+</div>
+
+    <div class="fireworks-container">
+    </div>
+
+    <div class="photo-garland">
+    <div class="garland-line"></div>
+    <div class="photo-container">
+        <video src="Video_MP4/111.mp4" autoplay loop muted playsinline class="photo"></video>
+        <video src="Video_MP4/222.mp4" autoplay loop muted playsinline class="photo"></video>
+        <video src="Video_MP4/333.mp4" autoplay loop muted playsinline class="photo"></video>
+        <video src="Video_MP4/444.mp4" autoplay loop muted playsinline class="photo"></video>
+        <video src="Video_MP4/555.mp4" autoplay loop muted playsinline class="photo"></video>
+    </div>
+</div>
+
+    <div id="balloon-container"></div>
+    <div id="moon-and-clouds">
+        <div class="moon"></div>
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+    </div>
+    
+    <div id="constellation-container"></div>
+    <div id="firefly-container"></div>
+    <div id="twinkling-stars-container"></div>  <div class="cake-wrapper cake-initial-position">
+        <div class="cake-container">
+            <div class="cake-layer layer-top">
+                <div class="cake-body"></div>
+                <div class="cake-icing"></div>
+                <div class="cake-drip"></div>
+                <div class="cherries cherries-top">
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                </div>
+                <div class="candles-on-top">
+                    <div class="candle blue-stripe" id="candle1">
+                        <div class="flame"></div>
+                    </div>
+                    <div class="candle blue-stripe" id="candle2">
+                        <div class="flame"></div>
+                    </div>
+                    <div class="candle blue-stripe" id="candle3">
+                        <div class="flame"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cake-layer layer-middle">
+                <div class="cake-body"></div>
+                <div class="cake-icing"></div>
+                <div class="cake-drip"></div>
+                <div class="cherries cherries-middle">
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                </div>
+            </div>
+
+            <div class="cake-layer layer-bottom">
+                <div class="cake-body"></div>
+                <div class="cake-icing"></div>
+                <div class="cake-drip"></div>
+                <div class="cherries cherries-bottom">
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                    <div class="cherry"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="happy-birthday-text">
+            <span class="word">Happy</span>
+            <span class="word">Birthday</span>
+            <br><br>
+            <span class="word">Huỳnh</span>
+            <span class="word">Bảo</span>
+            <span class="word">Trân</span>
+        </div>
+    </div>
+    <div id="wind-cursor"></div>
+    <script src="thoinen.js"></script>
+
+    <audio id="happy-birthday-music" autoplay loop>
+        <source src="Audio_MP3/happybirtday.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="fireworks-sound" src="phao.mp3"></audio>
+
+</body>
+</html>
